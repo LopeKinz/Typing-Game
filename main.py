@@ -2,16 +2,16 @@ import time
 import enchant
 
 def calculate_speed(words, time_taken):
-    speed = (words / time_taken) * 60
-    return speed
+    return (words / time_taken) * 60
 
 def get_paragraphs():
-    paragraphs = ["The quick brown fox jumps over the lazy dog",
-                  "The five boxing wizards jump quickly",
-                  "Sphinx of black quartz, judge my vow",
-                  "Jaded zombies acted quaintly but kept driving their oxen forward",
-                  "Pack my box with five dozen liquor jugs"]
-    return paragraphs
+    return [
+        "The quick brown fox jumps over the lazy dog",
+        "The five boxing wizards jump quickly",
+        "Sphinx of black quartz, judge my vow",
+        "Jaded zombies acted quaintly but kept driving their oxen forward",
+        "Pack my box with five dozen liquor jugs",
+    ]
 
 def typing_challenge():
     print("Welcome to the typing challenge!")
@@ -25,9 +25,9 @@ def typing_challenge():
         print("Type the following paragraph as fast as you can:")
         print(paragraphs[i])
         user_input = input()
-        # Rechtschreibprüfung
-        misspelled_words = [word for word in user_input.split() if not en_dict.check(word)]
-        if misspelled_words:
+        if misspelled_words := [
+            word for word in user_input.split() if not en_dict.check(word)
+        ]:
             print("Misspelled words:", misspelled_words)
         end_time = time.time()
         time_taken = end_time - start_time
